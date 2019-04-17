@@ -2,6 +2,8 @@ zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{%
 
 log.dirs={% for logdir in kafka.broker.datadir %}{% if loop.index > 1%},{% endif %}{{ logdir }}{% endfor %}
 
+advertised.listeners=PLAINTEXT://{{kafka.broker.id}}broker.hashedin.com:9092,SSL://{{kafka.broker.id}}broker.hashedin.com:9093
+
 broker.id={{kafka.broker.id}}
 
 {% for key, value in kafka.broker.config.items() %}
